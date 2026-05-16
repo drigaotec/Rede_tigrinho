@@ -1,0 +1,85 @@
+enable
+
+Entrar em configuração global:
+
+configure terminal
+
+#Criar VLAN 10:
+
+vlan 10
+name financeiro
+exit
+interface gigabitEthernet 1/0/1 - 2
+switchport mode access
+switchport access vlan 10
+exit
+
+#Criar VLAN 20:
+
+vlan 20
+name recursos humanos
+exit
+interface gigabitEthernet 1/0/3 - 4
+switchport mode access
+switchport access vlan 20
+exit
+
+#Criar VLAN 30:
+
+vlan 30
+name juridico
+exit
+interface gigabitEthernet 1/0/5 - 6
+switchport mode access
+switchport access vlan 30
+exit
+
+#Criar VLAN 40:
+
+vlan 40
+name dmz
+exit
+interface gigabitEthernet 1/0/7 - 12
+switchport mode access
+switchport access vlan 40
+exit
+
+#Criar VLAN 50:
+
+vlan 50
+name wi-fi
+exit
+interface gigabitEthernet 1/0/13 - 18
+switchport mode access
+switchport access vlan 50
+exit
+
+#Criar VLAN 99:
+
+vlan 99
+name gerencia
+exit
+interface gigabitEthernet 1/0/19 - 24
+switchport mode access
+switchport access vlan 99
+exit
+
+# Mostras todas as portas em trunk
+show running
+
+# Configurar as porta 24 como Trunk pfsense
+
+interface gigabitEthernet 1/0/24
+switchport mode trunk
+
+# Fazer todas as vlan passar através da interface gi1/0/24
+
+conf t
+interface gi1/0/24
+switchport trunk allowed vlan all
+
+
+# Mostrar configurações:
+
+show vlan brief
+
